@@ -133,9 +133,9 @@ let viewTween;
 
 function animatePulse(target) {
   if (!window.gsap || reduceMotion.matches || !target) return;
-  window.gsap.from(target, {
-    x: 4,
-    duration: 0.24,
+  window.gsap.fromTo(target, { scale: 0.986 }, {
+    scale: 1,
+    duration: 0.36,
     ease: "power2.out",
     overwrite: "auto"
   });
@@ -148,9 +148,10 @@ function animateDemoView(viewName) {
   const targets = [...view.children];
   viewTween?.kill();
   viewTween = window.gsap.from(targets, {
-    y: 6,
-    duration: 0.28,
+    y: 14,
+    duration: 0.46,
     ease: "power2.out",
+    stagger: 0.07,
     overwrite: "auto"
   });
 }
@@ -361,7 +362,7 @@ function generateReview() {
   const issueSentence = openIssues
     ? `当前还有 ${openIssues} 项异常未关闭，应先补齐处置记录，再进入周评。`
     : "当日异常均已完成闭环，可将记录纳入周度辅导判断。";
-  byId("review-summary").innerHTML = `<i data-lucide="file-check-2" aria-hidden="true"></i><p>${prepSentence}${issueSentence}</p>`;
+  byId("review-summary").innerHTML = `<i data-lucide="sparkles" aria-hidden="true"></i><p>${prepSentence}${issueSentence}</p>`;
   iconify();
   animatePulse(byId("review-summary"));
   showToast("复盘初稿已生成，仍需店长确认后才能进入周评。");
@@ -474,8 +475,16 @@ function init() {
 
 function initializeDemoMotion() {
   if (!window.gsap || reduceMotion.matches) return;
-  const workspace = document.querySelector(".workspace");
-  window.gsap.from(workspace, { y: 8, duration: 0.34, ease: "power2.out" });
+  const topbar = document.querySelector(".topbar");
+  const sidebar = document.querySelector(".sidebar");
+  const visibleView = document.querySelector(".view.is-visible");
+  const viewTargets = visibleView ? [...visibleView.children] : [];
+  const timeline = window.gsap.timeline({ defaults: { ease: "power3.out" } });
+
+  timeline
+    .from(topbar, { y: -12, duration: 0.46 })
+    .from(sidebar, { x: -14, duration: 0.48 }, "-=0.24")
+    .from(viewTargets, { y: 16, duration: 0.52, stagger: 0.07 }, "-=0.2");
 }
 
 document.addEventListener("DOMContentLoaded", init);
