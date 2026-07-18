@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23164832'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' font-weight='700' fill='white'%3E%E6%9D%A5%3C/text%3E%3C/svg%3E" />
     <meta
       name="description"
       content="来菜 AI 店长作战台，报名演示样机。所有经营数据均为模拟数据。"
@@ -97,22 +98,22 @@
             </div>
 
             <section class="decision-strip" aria-label="明日经营信号">
-              <article class="signal-card signal-card--strong">
+              <article class="signal-card signal-card--demand">
                 <span class="signal-label">晚市需求</span>
                 <strong>上行</strong>
                 <span>相对同类日 +12%</span>
               </article>
-              <article class="signal-card">
+              <article class="signal-card signal-card--neutral">
                 <span class="signal-label">主要原因</span>
                 <strong>周末 + 降温</strong>
                 <span>含商圈活动信号</span>
               </article>
-              <article class="signal-card">
+              <article class="signal-card signal-card--attention">
                 <span class="signal-label">需关注</span>
                 <strong>1 项</strong>
                 <span>藕汤备餐窗口较紧</span>
               </article>
-              <article class="signal-card">
+              <article class="signal-card signal-card--coverage">
                 <span class="signal-label">库存约束</span>
                 <strong>可覆盖</strong>
                 <span>核心原料在安全区间</span>
@@ -148,7 +149,7 @@
                 </div>
               </section>
 
-              <aside class="insight-stack" aria-label="备餐依据与人工调整">
+              <aside class="insight-stack" aria-label="备餐建议依据">
                 <section class="panel explanation-panel" aria-labelledby="explanation-title">
                   <div class="panel-heading compact">
                     <div>
@@ -162,25 +163,6 @@
                   <p class="explanation-footnote">模型提供基线，现场信息优先于模型。每次改动都会成为后续复盘的证据。</p>
                 </section>
 
-                <section class="panel adjust-panel" aria-labelledby="adjust-title">
-                  <div class="panel-heading compact">
-                    <div>
-                      <p class="eyebrow">人工修正</p>
-                      <h2 id="adjust-title">把现场情况写进去</h2>
-                    </div>
-                  </div>
-                  <label class="field-label" for="adjust-reason">调整原因</label>
-                  <select id="adjust-reason" class="select-control">
-                    <option value="">未调整，沿用建议</option>
-                    <option value="团餐尚未确认">团餐尚未确认</option>
-                    <option value="商圈活动临时变化">商圈活动临时变化</option>
-                    <option value="库存复盘后需保守备餐">库存复盘后需保守备餐</option>
-                    <option value="当班经验判断">当班经验判断</option>
-                  </select>
-                  <label class="field-label" for="adjust-note">补充说明</label>
-                  <textarea id="adjust-note" class="textarea-control" rows="3" placeholder="例如：附近团餐尚未确认，晚市先按较稳妥数量备餐。"></textarea>
-                  <p class="field-help">只有在数量变化时，系统才要求写明理由。</p>
-                </section>
               </aside>
             </div>
           </section>
@@ -323,9 +305,38 @@
       </div>
     </div>
 
+    <dialog class="adjust-dialog" id="adjust-dialog" aria-labelledby="adjust-title">
+      <form method="dialog" class="adjust-dialog__form">
+        <div class="adjust-dialog__heading">
+          <div>
+            <p class="eyebrow">人工修正</p>
+            <h2 id="adjust-title">记录本次调整依据</h2>
+          </div>
+          <button class="icon-button" type="submit" value="cancel" title="暂不记录" aria-label="暂不记录">
+            <i data-lucide="x" aria-hidden="true"></i>
+          </button>
+        </div>
+        <p class="adjust-dialog__lede">备餐数量有改动时，需要写明调整原因，方便第二天复盘。</p>
+        <label class="field-label" for="adjust-reason">调整原因</label>
+        <select id="adjust-reason" class="select-control">
+          <option value="">请选择调整原因</option>
+          <option value="团餐尚未确认">团餐尚未确认</option>
+          <option value="商圈活动临时变化">商圈活动临时变化</option>
+          <option value="库存复盘后需保守备餐">库存复盘后需保守备餐</option>
+          <option value="当班经验判断">当班经验判断</option>
+        </select>
+        <label class="field-label" for="adjust-note">补充说明</label>
+        <textarea id="adjust-note" class="textarea-control" rows="3" placeholder="例如：附近团餐尚未确认，晚市先按较稳妥数量备餐。"></textarea>
+        <div class="adjust-dialog__actions">
+          <button class="button button-quiet" type="submit" value="cancel">暂不写入</button>
+          <button class="button button-primary" type="button" id="save-adjustment">保存依据并写入</button>
+        </div>
+      </form>
+    </dialog>
+
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script src="app.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script async src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   </body>
 </html>

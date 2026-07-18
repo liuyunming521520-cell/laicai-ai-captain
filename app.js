@@ -49,9 +49,13 @@ const stageImage = document.getElementById("stage-image");
 const stageCaption = document.getElementById("stage-caption");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 let stageTween;
+let motionInitialized = false;
+let scrollRevealInitialized = false;
 
 function renderIcons() {
-  if (window.lucide) window.lucide.createIcons({ attrs: { "stroke-width": 1.8 } });
+  if (!window.lucide) return false;
+  window.lucide.createIcons({ attrs: { "stroke-width": 1.8 } });
+  return true;
 }
 
 function animateStageChange() {
@@ -75,7 +79,7 @@ function setStage(name) {
   stageButtons.forEach((button) => {
     const active = button.dataset.stage === name;
     button.classList.toggle("is-active", active);
-    button.setAttribute("aria-selected", String(active));
+    button.setAttribute("aria-pressed", String(active));
   });
 
   stageLabel.textContent = stage.label;
@@ -96,7 +100,25 @@ function initializeMotion() {
   if (!window.gsap || reduceMotion.matches) return;
 
   const { gsap, ScrollTrigger } = window;
-  if (ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+  if (ScrollTrigger && !scrollRevealInitialized) {
+    gsap.registerPlugin(ScrollTrigger);
+    gsap.utils.toArray("[data-reveal]").forEach((element) => {
+      gsap.from(element, {
+        y: 28,
+        duration: 0.68,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 84%",
+          once: true
+        }
+      });
+    });
+    scrollRevealInitialized = true;
+  }
+
+  if (motionInitialized) return;
+  motionInitialized = true;
 
   const heroIntro = document.querySelector("[data-hero-intro]");
   const heroShot = document.querySelector("[data-hero-shot]");
@@ -113,26 +135,23 @@ function initializeMotion() {
     .from(traceConnectors, { scaleX: 0, scaleY: 0, duration: 0.38, stagger: 0.07 }, "-=0.14")
     .from(heroShot, { y: 22, scale: 0.986, duration: 0.78 }, "-=0.18");
 
-  if (ScrollTrigger) {
-    gsap.utils.toArray("[data-reveal]").forEach((element) => {
-      gsap.from(element, {
-        y: 28,
-        duration: 0.68,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: element,
-          start: "top 84%",
-          once: true
-        }
-      });
-    });
-  }
-
   const header = document.querySelector("[data-site-header]");
   const updateHeader = () => header?.classList.toggle("is-scrolled", window.scrollY > 8);
   updateHeader();
   window.addEventListener("scroll", updateHeader, { passive: true });
 }
 
-document.addEventListener("DOMContentLoaded", renderIcons);
-window.addEventListener("load", initializeMotion, { once: true });
+function initializeOptionalEnhancements() {
+  let attempts = 0;
+  let timer;
+  const enhance = () => {
+    const iconsReady = renderIcons();
+    initializeMotion();
+    attempts += 1;
+    if ((iconsReady && window.gsap && window.ScrollTrigger) || attempts >= 20) window.clearInterval(timer);
+  };
+  timer = window.setInterval(enhance, 250);
+  enhance();
+}
+
+document.addEventListener("DOMContentLoaded", initializeOptionalEnhancements);

@@ -164,10 +164,6 @@ button:focus-visible, a:focus-visible {
 .shot-caption strong { font-size: 14px; }
 .hero-product-shot figcaption { padding: 10px 16px 18px; color: #b9d0be; background: #163d2b; border: 1px solid #3c6b55; border-top: 0; font-size: 12px; }
 
-@media (hover: hover) and (pointer: fine) {
-  .hero-product-shot:hover img { transform: translateY(-3px) scale(1.006); }
-}
-
 .section { padding: 96px 0; }
 .section-heading { position: relative; margin-bottom: 42px; }
 .section-heading::after { display: block; width: 50px; height: 3px; margin-top: 22px; background: var(--leaf); content: ""; }
@@ -223,13 +219,12 @@ button:focus-visible, a:focus-visible {
 
 .section-pilot { background: var(--canvas); }
 .pilot-grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line-deep); border-left: 1px solid var(--line-deep); }
-.pilot-question { min-height: 214px; padding: 24px; background: var(--surface); border-right: 1px solid var(--line-deep); border-bottom: 1px solid var(--line-deep); transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease; }
+.pilot-question { min-height: 214px; padding: 24px; background: var(--surface); border-right: 1px solid var(--line-deep); border-bottom: 1px solid var(--line-deep); }
 .pilot-question:nth-child(2) { background: #fffdf7; }
 .pilot-question:nth-child(3) { background: #f8fbff; }
 .question-number { color: var(--leaf); font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.7px; }
 .pilot-question h3 { margin: 25px 0 7px; font-family: var(--serif); font-size: 23px; line-height: 1.3; }
 .pilot-question p { margin: 0; color: var(--muted); font-size: 14px; }
-.pilot-question:hover { position: relative; z-index: 1; box-shadow: var(--shadow-lift); transform: translateY(-3px); }
 .pilot-evidence { display: grid; grid-template-columns: minmax(0, 0.88fr) minmax(0, 1.12fr); gap: 0; margin-top: 38px; border: 1px solid var(--line-deep); }
 .pilot-scope { padding: 28px; background: var(--forest); color: #fff; }
 .pilot-scope .section-kicker { color: #b7d8bc; }
@@ -254,8 +249,7 @@ button:focus-visible, a:focus-visible {
 .section-boundary .section-kicker { color: #b9d9bb; }
 .boundary-layout h2 { color: #fff; }
 .boundary-list { border-top: 1px solid rgba(222, 241, 226, 0.27); }
-.boundary-list article { display: grid; grid-template-columns: 34px 1fr; gap: 14px; padding: 19px 0; border-bottom: 1px solid rgba(222, 241, 226, 0.22); transition: padding-left 180ms ease, background-color 180ms ease; }
-.boundary-list article:hover { padding-left: 10px; background: rgba(255, 255, 255, 0.035); }
+.boundary-list article { display: grid; grid-template-columns: 34px 1fr; gap: 14px; padding: 19px 0; border-bottom: 1px solid rgba(222, 241, 226, 0.22); }
 .boundary-list svg { width: 22px; height: 22px; color: #bee0be; }
 .boundary-list h3 { margin: 0; color: #fff; font-size: 17px; }
 .boundary-list p { margin: 4px 0 0; color: #c7d7cb; font-size: 14px; }

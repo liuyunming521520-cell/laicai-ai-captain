@@ -129,7 +129,9 @@ const state = {
 
 const byId = (id) => document.getElementById(id);
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const adjustDialog = byId("adjust-dialog");
 let viewTween;
+let motionInitialized = false;
 
 function animatePulse(target) {
   if (!window.gsap || reduceMotion.matches || !target) return;
@@ -170,9 +172,9 @@ function escapeHtml(value) {
 }
 
 function iconify() {
-  if (window.lucide) {
-    window.lucide.createIcons({ attrs: { "stroke-width": 1.8 } });
-  }
+  if (!window.lucide) return false;
+  window.lucide.createIcons({ attrs: { "stroke-width": 1.8 } });
+  return true;
 }
 
 function selectedPrep() {
@@ -238,13 +240,21 @@ function updatePrepQuantity(id, value) {
   renderPrep();
 }
 
+function openAdjustmentDialog() {
+  if (adjustDialog?.showModal) {
+    adjustDialog.showModal();
+    window.requestAnimationFrame(() => byId("adjust-reason").focus());
+    return;
+  }
+  byId("adjust-reason").focus();
+}
+
 function commitPrep() {
   const changed = state.prep.filter((dish) => dish.quantity !== dish.recommended);
   const reason = byId("adjust-reason").value;
   const note = byId("adjust-note").value.trim();
   if (changed.length && !reason) {
-    showToast("备餐量有调整，请补充调整原因后再写入作业单。");
-    byId("adjust-reason").focus();
+    openAdjustmentDialog();
     return;
   }
 
@@ -398,6 +408,7 @@ function resetPrep() {
   state.prepCommitted = null;
   byId("adjust-reason").value = "";
   byId("adjust-note").value = "";
+  adjustDialog?.close();
   renderPrep();
   showToast("备餐演示数据已恢复。");
 }
@@ -459,6 +470,15 @@ function bindEvents() {
   });
 
   byId("commit-prep").addEventListener("click", commitPrep);
+  byId("save-adjustment").addEventListener("click", () => {
+    if (!byId("adjust-reason").value) {
+      showToast("请先选择调整原因。");
+      byId("adjust-reason").focus();
+      return;
+    }
+    adjustDialog?.close();
+    commitPrep();
+  });
   byId("reset-prep").addEventListener("click", resetPrep);
   byId("reset-issues").addEventListener("click", resetIssues);
   byId("generate-review").addEventListener("click", generateReview);
@@ -469,12 +489,12 @@ function init() {
   renderIssues();
   renderVarianceChart();
   bindEvents();
-  iconify();
-  initializeDemoMotion();
+  initializeOptionalEnhancements();
 }
 
 function initializeDemoMotion() {
-  if (!window.gsap || reduceMotion.matches) return;
+  if (motionInitialized || !window.gsap || reduceMotion.matches) return;
+  motionInitialized = true;
   const topbar = document.querySelector(".topbar");
   const sidebar = document.querySelector(".sidebar");
   const visibleView = document.querySelector(".view.is-visible");
@@ -487,4 +507,17 @@ function initializeDemoMotion() {
     .from(viewTargets, { y: 16, duration: 0.52, stagger: 0.07 }, "-=0.2");
 }
 
-document.addEventListener("DOMContentLoaded", init);
+function initializeOptionalEnhancements() {
+  let attempts = 0;
+  let timer;
+  const enhance = () => {
+    const iconsReady = iconify();
+    initializeDemoMotion();
+    attempts += 1;
+    if ((iconsReady && motionInitialized) || attempts >= 20) window.clearInterval(timer);
+  };
+  timer = window.setInterval(enhance, 250);
+  enhance();
+}
+
+init();

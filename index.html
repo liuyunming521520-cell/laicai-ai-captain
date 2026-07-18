@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='5' fill='%23164832'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='18' font-family='sans-serif' font-weight='700' fill='white'%3E%E6%9D%A5%3C/text%3E%3C/svg%3E" />
     <meta
       name="description"
       content="来菜 AI 店长作战台：以单店单日闭环连接经营、备餐、品控与门店评估的交互式项目档案。"
@@ -109,8 +110,8 @@
         </div>
 
         <div class="container workflow-shell" data-reveal>
-          <div class="stage-tabs" role="tablist" aria-label="三段门店工作流">
-            <button class="stage-tab is-active" type="button" data-stage="prep" role="tab" aria-selected="true">
+          <div class="stage-tabs" aria-label="三段门店工作流">
+            <button class="stage-tab is-active" type="button" data-stage="prep" aria-pressed="true">
               <span class="stage-index">01</span>
               <span>
                 <strong>经营 · 备餐</strong>
@@ -118,7 +119,7 @@
               </span>
               <i data-lucide="clipboard-list" aria-hidden="true"></i>
             </button>
-            <button class="stage-tab" type="button" data-stage="quality" role="tab" aria-selected="false">
+            <button class="stage-tab" type="button" data-stage="quality" aria-pressed="false">
               <span class="stage-index">02</span>
               <span>
                 <strong>品控 · 异常</strong>
@@ -126,7 +127,7 @@
               </span>
               <i data-lucide="shield-alert" aria-hidden="true"></i>
             </button>
-            <button class="stage-tab" type="button" data-stage="review" role="tab" aria-selected="false">
+            <button class="stage-tab" type="button" data-stage="review" aria-pressed="false">
               <span class="stage-index">03</span>
               <span>
                 <strong>复盘 · 周评</strong>
@@ -310,9 +311,9 @@
       </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script src="app.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script async src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script async src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
   </body>
 </html>
