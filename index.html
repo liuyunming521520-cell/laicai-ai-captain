@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="来菜 AI 店长作战台：以单店单日闭环连接经营、备餐、品控与门店评估的交互式项目档案。"
+    />
+    <title>来菜 AI 店长作战台｜项目档案</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">跳到主要内容</a>
+
+    <header class="site-header">
+      <a class="wordmark" href="#top" aria-label="回到项目首页">
+        <span class="wordmark-seal" aria-hidden="true">来</span>
+        <span>
+          <strong>来菜</strong>
+          <small>AI 店长作战台</small>
+        </span>
+      </a>
+      <nav class="site-nav" aria-label="项目导航">
+        <a href="#logic">方案逻辑</a>
+        <a href="#pilot">试点验证</a>
+        <a href="#materials">项目资料</a>
+        <a class="nav-demo-link" href="demo/">
+          <i data-lucide="play" aria-hidden="true"></i>
+          进入样机
+        </a>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1">
+      <section id="top" class="hero" aria-labelledby="hero-title">
+        <div class="container hero-intro">
+          <div class="hero-kicker">
+            <span>2026 AI 先锋未来人才大赛</span>
+            <span aria-hidden="true">/</span>
+            <span>来菜企业命题</span>
+          </div>
+          <h1 id="hero-title">让 100 家店先拥有<br />一套能被执行的<br class="mobile-only" />日常判断</h1>
+          <p class="hero-summary">
+            我们不做泛餐饮 AI 平台。来菜 AI 店长作战台围绕一间门店、一天经营，把明日备餐、营业中品控线索与闭店复盘接成可修改、可追溯的工作闭环。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="demo/">
+              <i data-lucide="monitor-play" aria-hidden="true"></i>
+              进入交互式样机
+            </a>
+            <a class="button button-quiet" href="#pilot">
+              <i data-lucide="list-checks" aria-hidden="true"></i>
+              查看试点如何验证
+            </a>
+          </div>
+          <dl class="hero-facts" aria-label="项目范围">
+            <div>
+              <dt>题目目标</dt>
+              <dd>100 家楚菜连锁</dd>
+            </div>
+            <div>
+              <dt>起点</dt>
+              <dd>单店单日闭环</dd>
+            </div>
+            <div>
+              <dt>人机边界</dt>
+              <dd>AI 建议，人来确认</dd>
+            </div>
+          </dl>
+        </div>
+
+        <figure class="hero-product-shot container">
+          <div class="shot-caption">
+            <span>交互样机 / 01</span>
+            <strong>明日备餐决策台</strong>
+          </div>
+          <img src="assets/images/01-prep.png" alt="来菜 AI 店长作战台的明日备餐决策台界面" />
+          <figcaption>所有门店、菜品、销量、库存、异常和指标均为模拟样本，仅用于展示数据结构、工作流与验证方法。</figcaption>
+        </figure>
+      </section>
+
+      <section id="logic" class="section section-logic" aria-labelledby="logic-title">
+        <div class="container section-heading">
+          <p class="section-kicker">项目逻辑</p>
+          <div class="heading-split">
+            <h2 id="logic-title">一间店的一天，<br />比一张“大屏”<br class="mobile-only" />更值得先做。</h2>
+            <p>
+              百店不是把同一套推荐复制 100 次。门店会遇到团餐确认、活动变化、库存约束与交接缺口。系统要做的，是让这些临场信息能够被写进决策，并在事后被看见。
+            </p>
+          </div>
+        </div>
+
+        <div class="container workflow-shell">
+          <div class="stage-tabs" role="tablist" aria-label="三段门店工作流">
+            <button class="stage-tab is-active" type="button" data-stage="prep" role="tab" aria-selected="true">
+              <span class="stage-index">01</span>
+              <span>
+                <strong>经营 · 备餐</strong>
+                <small>把预测变成作业单</small>
+              </span>
+              <i data-lucide="clipboard-list" aria-hidden="true"></i>
+            </button>
+            <button class="stage-tab" type="button" data-stage="quality" role="tab" aria-selected="false">
+              <span class="stage-index">02</span>
+              <span>
+                <strong>品控 · 异常</strong>
+                <small>把线索变成处置记录</small>
+              </span>
+              <i data-lucide="shield-alert" aria-hidden="true"></i>
+            </button>
+            <button class="stage-tab" type="button" data-stage="review" role="tab" aria-selected="false">
+              <span class="stage-index">03</span>
+              <span>
+                <strong>复盘 · 周评</strong>
+                <small>把当天记录变成辅导动作</small>
+              </span>
+              <i data-lucide="chart-no-axes-combined" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="stage-detail" aria-live="polite">
+            <div class="stage-copy">
+              <p class="stage-label" id="stage-label">18:00 前 / 店长确认</p>
+              <h3 id="stage-title">预测不是一个数，而是一套可修改的决策起点。</h3>
+              <p id="stage-summary">
+                系统给出需求区间、库存约束和建议量；店长可以按当天现场情况改量，并必须留下理由。第二天复盘的不是“谁服从了模型”，而是这次调整解决了什么问题。
+              </p>
+              <ul id="stage-points" class="stage-points">
+                <li>输出 P50、P75 与库存约束，而不是一句“明天备 74 份”。</li>
+                <li>保留店长确认量、调整理由和时间，形成可复盘的决策记录。</li>
+                <li>先从高频、易耗、波动明显的重点菜品开始验证。</li>
+              </ul>
+              <a class="inline-link" href="demo/" id="stage-link">
+                在样机中操作这一环
+                <i data-lucide="arrow-right" aria-hidden="true"></i>
+              </a>
+            </div>
+            <figure class="stage-shot">
+              <img id="stage-image" src="assets/images/01-prep.png" alt="明日备餐决策台界面" />
+              <figcaption id="stage-caption">店长调整数量并写入理由后，作业单才会生效。</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section id="pilot" class="section section-pilot" aria-labelledby="pilot-title">
+        <div class="container section-heading">
+          <p class="section-kicker">模拟试点</p>
+          <div class="heading-split">
+            <h2 id="pilot-title">先把“是否有用”<br />拆成可回答的问题。</h2>
+            <p>
+              报名阶段没有企业内部数据，不能先许诺结果。我们先设计一套能比较、能复盘的验证条件：建议是否可用、异常是否闭环、总部是否能据此进行辅导。
+            </p>
+          </div>
+        </div>
+
+        <div class="container pilot-grid">
+          <article class="pilot-question">
+            <span class="question-number">Q1</span>
+            <h3>建议会被采用吗？</h3>
+            <p>看建议采纳率，也记录店长为何修改；高采纳不等于建议正确。</p>
+          </article>
+          <article class="pilot-question">
+            <span class="question-number">Q2</span>
+            <h3>异常真的闭环了吗？</h3>
+            <p>从线索、认领、处置到复核，必须留下负责人、时限和结论。</p>
+          </article>
+          <article class="pilot-question">
+            <span class="question-number">Q3</span>
+            <h3>周评能指导行动吗？</h3>
+            <p>总部看到的是待辅导动作，而不是脱离证据的门店“黑箱分数”。</p>
+          </article>
+        </div>
+
+        <div class="container pilot-evidence">
+          <div class="pilot-scope">
+            <p class="section-kicker">模拟试点范围</p>
+            <div class="scope-line" aria-label="模拟试点范围为三家门店、四个重点菜品、二十八日试点周期">
+              <span><strong>3</strong> 家模拟门店</span>
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+              <span><strong>4</strong> 个重点菜品</span>
+              <i data-lucide="arrow-right" aria-hidden="true"></i>
+              <span><strong>28</strong> 日试点周期</span>
+            </div>
+          </div>
+          <div class="pilot-metrics">
+            <p>模拟工作簿中的计算示例</p>
+            <div class="metric-row">
+              <div><span>建议采纳率</span><strong>87.8%</strong></div>
+              <div><span>WAPE</span><strong>11.3%</strong></div>
+              <div><span>售罄率</span><strong>0.6%</strong></div>
+              <div><span>报损率</span><strong>6.6%</strong></div>
+            </div>
+            <small>这是模拟样本上的公式演算结果，不代表来菜真实经营表现，也不是效果承诺。</small>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-boundary" aria-labelledby="boundary-title">
+        <div class="container boundary-layout">
+          <div>
+            <p class="section-kicker">边界与治理</p>
+            <h2 id="boundary-title">系统可以提醒，<br />但不能替人越界。</h2>
+          </div>
+          <div class="boundary-list">
+            <article>
+              <i data-lucide="scan-search" aria-hidden="true"></i>
+              <div>
+                <h3>风险线索，不是专业结论</h3>
+                <p>图像、温度、反馈与表单完整性只能触发“待复核”，食品安全与出品结论仍由责任人确认。</p>
+              </div>
+            </article>
+            <article>
+              <i data-lucide="user-check" aria-hidden="true"></i>
+              <div>
+                <h3>人工确认，必须留痕</h3>
+                <p>店长可调整备餐，品控负责人可关闭事项；两类动作都应保留理由、时间与责任人。</p>
+              </div>
+            </article>
+            <article>
+              <i data-lucide="database-zap" aria-hidden="true"></i>
+              <div>
+                <h3>数据最小化，口径先行</h3>
+                <p>先校准营业日切分、字段缺失和系统版本，再讨论扩大范围或训练模型。</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="materials" class="section section-materials" aria-labelledby="materials-title">
+        <div class="container materials-heading">
+          <div>
+            <p class="section-kicker">项目资料</p>
+            <h2 id="materials-title">每一份材料，<br />证明一个不同的问题。</h2>
+          </div>
+          <p>网页、文档和数据工作簿相互对应。评委可先操作样机，再按需查看研究、试点与数据口径。</p>
+        </div>
+
+        <div class="container materials-list">
+          <a class="material-item" href="assets/docs/方案总览-6页.pdf" target="_blank" rel="noopener">
+            <span class="material-index">01</span>
+            <span class="material-copy"><strong>方案总览</strong><small>问题拆解、三段闭环与试点路径</small></span>
+            <span class="material-type">PDF · 6 页</span>
+            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <a class="material-item" href="assets/docs/百店经营AI调研报告.pdf" target="_blank" rel="noopener">
+            <span class="material-index">02</span>
+            <span class="material-copy"><strong>百店经营 AI 调研报告</strong><small>公开资料、行业判断与方案推导</small></span>
+            <span class="material-type">PDF · 论文版</span>
+            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <a class="material-item" href="assets/docs/三屏样机演示.pdf" target="_blank" rel="noopener">
+            <span class="material-index">03</span>
+            <span class="material-copy"><strong>三屏样机演示</strong><small>备餐、异常处置、闭店复盘的操作示例</small></span>
+            <span class="material-type">PDF · 4 页</span>
+            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <a class="material-item" href="assets/docs/28日模拟试点验证手册.pdf" target="_blank" rel="noopener">
+            <span class="material-index">04</span>
+            <span class="material-copy"><strong>28 日模拟试点验证手册</strong><small>指标口径、验证节奏、责任边界与治理</small></span>
+            <span class="material-type">PDF · 7 页</span>
+            <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+          </a>
+          <a class="material-item" href="assets/docs/三店四菜28日模拟试点数据.xlsx" download>
+            <span class="material-index">05</span>
+            <span class="material-copy"><strong>三店四菜 28 日模拟试点数据</strong><small>模拟日经营记录、异常日志、指标口径与公式</small></span>
+            <span class="material-type">XLSX · 可下载</span>
+            <i data-lucide="download" aria-hidden="true"></i>
+          </a>
+        </div>
+      </section>
+
+      <section class="cta-band" aria-labelledby="cta-title">
+        <div class="container cta-layout">
+          <div>
+            <p class="section-kicker">可交互演示</p>
+            <h2 id="cta-title">看完逻辑，直接进入门店的一天。</h2>
+          </div>
+          <a class="button button-light" href="demo/">
+            <i data-lucide="mouse-pointer-click" aria-hidden="true"></i>
+            打开三屏交互样机
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-layout">
+        <p>来菜 AI 店长作战台 · 2026 AI 先锋未来人才大赛</p>
+        <p>所有经营数据均为模拟样本，不代表来菜内部数据或实际效果。</p>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

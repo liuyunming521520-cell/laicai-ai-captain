@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="来菜 AI 店长作战台，报名演示样机。所有经营数据均为模拟数据。"
+    />
+    <title>来菜 AI 店长作战台｜交互样机</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#workspace">跳到主要内容</a>
+    <div class="app-frame">
+      <header class="topbar">
+        <div class="brand-lockup" aria-label="来菜 AI 店长作战台">
+          <div class="brand-mark" aria-hidden="true">来</div>
+          <div>
+            <p class="brand-name">来菜</p>
+            <p class="brand-product">AI 店长作战台</p>
+          </div>
+        </div>
+
+        <div class="topbar-meta">
+          <a class="project-return" href="../index.html">
+            <i data-lucide="arrow-left" aria-hidden="true"></i>
+            项目档案
+          </a>
+          <span class="simulation-badge"><i data-lucide="flask-conical" aria-hidden="true"></i> 演示模式 · 模拟数据</span>
+          <span class="date-label">单店单日闭环样机</span>
+        </div>
+      </header>
+
+      <div class="shell">
+        <aside class="sidebar" aria-label="功能导航">
+          <div class="store-context">
+            <p class="eyebrow">当前门店</p>
+            <p class="store-name">武汉江汉路店</p>
+            <p class="store-note">晚市经营准备</p>
+          </div>
+
+          <nav class="product-nav" aria-label="作战台页面">
+            <button class="nav-item is-active" type="button" data-view-target="prep" aria-current="page">
+              <i data-lucide="clipboard-list" aria-hidden="true"></i>
+              <span>明日备餐</span>
+              <span class="nav-index">01</span>
+            </button>
+            <button class="nav-item" type="button" data-view-target="quality">
+              <i data-lucide="shield-alert" aria-hidden="true"></i>
+              <span>异常处置</span>
+              <span class="nav-index">02</span>
+            </button>
+            <button class="nav-item" type="button" data-view-target="review">
+              <i data-lucide="line-chart" aria-hidden="true"></i>
+              <span>闭店复盘</span>
+              <span class="nav-index">03</span>
+            </button>
+          </nav>
+
+          <div class="side-rule" aria-label="系统工作原则">
+            <p class="eyebrow">系统原则</p>
+            <p>AI 给建议，店长作决定；每一次调整都留下依据。</p>
+          </div>
+
+          <div class="sidebar-footer">
+            <span class="status-dot" aria-hidden="true"></span>
+            演示环境已就绪
+          </div>
+        </aside>
+
+        <main id="workspace" class="workspace" tabindex="-1">
+          <section class="view is-visible" id="view-prep" data-view="prep" aria-labelledby="prep-title">
+            <div class="view-heading">
+              <div>
+                <p class="eyebrow">闭店前 · 18:00 前确认</p>
+                <h1 id="prep-title">明日备餐决策台</h1>
+                <p class="lede">先看高峰风险，再把建议改成店长愿意执行的作业单。</p>
+              </div>
+              <div class="heading-actions">
+                <button class="button button-quiet" type="button" id="reset-prep" title="恢复演示数据">
+                  <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+                  恢复演示数据
+                </button>
+                <button class="button button-primary" type="button" id="commit-prep">
+                  <i data-lucide="check" aria-hidden="true"></i>
+                  写入明日作业单
+                </button>
+              </div>
+            </div>
+
+            <section class="decision-strip" aria-label="明日经营信号">
+              <article class="signal-card signal-card--strong">
+                <span class="signal-label">晚市需求</span>
+                <strong>上行</strong>
+                <span>相对同类日 +12%</span>
+              </article>
+              <article class="signal-card">
+                <span class="signal-label">主要原因</span>
+                <strong>周末 + 降温</strong>
+                <span>含商圈活动信号</span>
+              </article>
+              <article class="signal-card">
+                <span class="signal-label">需关注</span>
+                <strong>1 项</strong>
+                <span>藕汤备餐窗口较紧</span>
+              </article>
+              <article class="signal-card">
+                <span class="signal-label">库存约束</span>
+                <strong>可覆盖</strong>
+                <span>核心原料在安全区间</span>
+              </article>
+            </section>
+
+            <div class="prep-layout">
+              <section class="panel prep-panel" aria-labelledby="prep-list-title">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">建议清单</p>
+                    <h2 id="prep-list-title">重点菜品备餐量</h2>
+                  </div>
+                  <span class="panel-note">份数为演示值</span>
+                </div>
+                <div class="prep-table-wrap">
+                  <table class="prep-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">菜品</th>
+                        <th scope="col">需求区间</th>
+                        <th scope="col">建议备餐</th>
+                        <th scope="col">库存覆盖</th>
+                        <th scope="col">店长确认</th>
+                      </tr>
+                    </thead>
+                    <tbody id="prep-table-body"></tbody>
+                  </table>
+                </div>
+                <div class="audit-trail" id="prep-audit" aria-live="polite">
+                  <i data-lucide="history" aria-hidden="true"></i>
+                  <span>尚未写入。确认后会保留修改数量、理由和时间。</span>
+                </div>
+              </section>
+
+              <aside class="insight-stack" aria-label="备餐依据与人工调整">
+                <section class="panel explanation-panel" aria-labelledby="explanation-title">
+                  <div class="panel-heading compact">
+                    <div>
+                      <p class="eyebrow">建议依据</p>
+                      <h2 id="explanation-title">为什么这样建议</h2>
+                    </div>
+                    <span class="confidence" id="prep-confidence">中高置信</span>
+                  </div>
+                  <div id="selected-dish-summary" class="selected-dish-summary"></div>
+                  <ul id="driver-list" class="driver-list"></ul>
+                  <p class="explanation-footnote">模型提供基线，现场信息优先于模型。每次改动都会成为后续复盘的证据。</p>
+                </section>
+
+                <section class="panel adjust-panel" aria-labelledby="adjust-title">
+                  <div class="panel-heading compact">
+                    <div>
+                      <p class="eyebrow">人工修正</p>
+                      <h2 id="adjust-title">把现场情况写进去</h2>
+                    </div>
+                  </div>
+                  <label class="field-label" for="adjust-reason">调整原因</label>
+                  <select id="adjust-reason" class="select-control">
+                    <option value="">未调整，沿用建议</option>
+                    <option value="团餐尚未确认">团餐尚未确认</option>
+                    <option value="商圈活动临时变化">商圈活动临时变化</option>
+                    <option value="库存复盘后需保守备餐">库存复盘后需保守备餐</option>
+                    <option value="当班经验判断">当班经验判断</option>
+                  </select>
+                  <label class="field-label" for="adjust-note">补充说明</label>
+                  <textarea id="adjust-note" class="textarea-control" rows="3" placeholder="例如：附近团餐尚未确认，晚市先按较稳妥数量备餐。"></textarea>
+                  <p class="field-help">只有在数量变化时，系统才要求写明理由。</p>
+                </section>
+              </aside>
+            </div>
+          </section>
+
+          <section class="view" id="view-quality" data-view="quality" aria-labelledby="quality-title" hidden>
+            <div class="view-heading">
+              <div>
+                <p class="eyebrow">营业中 · 先处理高后果风险</p>
+                <h1 id="quality-title">出品质检与异常处置台</h1>
+                <p class="lede">AI 只负责发现线索和归集证据，是否合格必须由当班负责人复核。</p>
+              </div>
+              <div class="quality-counter" aria-label="当前待办数量">
+                <span>待处理</span>
+                <strong id="open-issue-count">3</strong>
+              </div>
+            </div>
+
+            <div class="quality-layout">
+              <section class="panel issue-panel" aria-labelledby="issue-list-title">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">待办队列</p>
+                    <h2 id="issue-list-title">异常处置卡</h2>
+                  </div>
+                  <button class="icon-button" type="button" id="reset-issues" title="恢复异常演示状态" aria-label="恢复异常演示状态">
+                    <i data-lucide="rotate-ccw" aria-hidden="true"></i>
+                  </button>
+                </div>
+                <div id="issue-list" class="issue-list"></div>
+              </section>
+
+              <aside class="quality-side-stack">
+                <section class="panel evidence-panel" aria-labelledby="evidence-title">
+                  <div class="panel-heading compact">
+                    <div>
+                      <p class="eyebrow">证据链</p>
+                      <h2 id="evidence-title">选中事项的处置依据</h2>
+                    </div>
+                  </div>
+                  <div id="issue-evidence" class="issue-evidence"></div>
+                </section>
+                <section class="guardrail-callout">
+                  <i data-lucide="shield-check" aria-hidden="true"></i>
+                  <div>
+                    <strong>人工复核不可跳过</strong>
+                    <p>图像、温度和反馈只用于提示风险，不输出食品安全结论。</p>
+                  </div>
+                </section>
+              </aside>
+            </div>
+          </section>
+
+          <section class="view" id="view-review" data-view="review" aria-labelledby="review-title" hidden>
+            <div class="view-heading">
+              <div>
+                <p class="eyebrow">闭店后 · 看偏差，也看原因</p>
+                <h1 id="review-title">闭店复盘与门店周评台</h1>
+                <p class="lede">不按一个总分给门店贴标签，先找出下周最值得辅导的动作。</p>
+              </div>
+              <button class="button button-primary" type="button" id="generate-review">
+                <i data-lucide="file-text" aria-hidden="true"></i>
+                生成复盘摘要
+              </button>
+            </div>
+
+            <section class="metrics-grid" aria-label="经营复盘指标">
+              <article class="metric-card">
+                <span>建议采纳率</span>
+                <strong>83%</strong>
+                <small>模拟试点口径</small>
+              </article>
+              <article class="metric-card">
+                <span>预测偏差 WAPE</span>
+                <strong>10.9%</strong>
+                <small>重点菜品合计</small>
+              </article>
+              <article class="metric-card metric-card--alert">
+                <span>未闭环异常</span>
+                <strong id="review-open-count">1</strong>
+                <small>需当班复核</small>
+              </article>
+              <article class="metric-card">
+                <span>下周优先动作</span>
+                <strong>2 项</strong>
+                <small>用于督导辅导</small>
+              </article>
+            </section>
+
+            <div class="review-layout">
+              <section class="panel variance-panel" aria-labelledby="variance-title">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">当日回看</p>
+                    <h2 id="variance-title">重点菜品：预测与实际</h2>
+                  </div>
+                  <span class="panel-note">演示数据</span>
+                </div>
+                <div class="bar-legend" aria-hidden="true">
+                  <span><i class="legend-swatch legend-swatch--forecast"></i>预测</span>
+                  <span><i class="legend-swatch legend-swatch--actual"></i>实际</span>
+                </div>
+                <div id="variance-chart" class="variance-chart" role="img" aria-label="重点菜品预测与实际销量对比图"></div>
+                <div id="review-summary" class="review-summary" aria-live="polite">
+                  <i data-lucide="sparkles" aria-hidden="true"></i>
+                  <p>系统已准备好复盘初稿。店长确认后，才会进入门店周评。</p>
+                </div>
+              </section>
+
+              <section class="panel coaching-panel" aria-labelledby="coaching-title">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">周评不是排名</p>
+                    <h2 id="coaching-title">下周辅导任务</h2>
+                  </div>
+                </div>
+                <ol class="coaching-list">
+                  <li>
+                    <span class="task-number">01</span>
+                    <div>
+                      <strong>核对周末晚市的活动信号</strong>
+                      <p>连续两周出现需求上行时，补充门店活动标签与团餐确认时间。</p>
+                    </div>
+                  </li>
+                  <li>
+                    <span class="task-number">02</span>
+                    <div>
+                      <strong>复盘藕汤保温节点的留痕完整性</strong>
+                      <p>先补全记录，再判断是设备、交接还是 SOP 执行问题。</p>
+                    </div>
+                  </li>
+                </ol>
+                <div class="coaching-footnote">
+                  <i data-lucide="users-round" aria-hidden="true"></i>
+                  督导看到的是可执行的辅导事项，不是来源不明的“门店分数”。
+                </div>
+              </section>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
