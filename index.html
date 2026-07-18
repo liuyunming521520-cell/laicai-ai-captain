@@ -19,16 +19,16 @@
         <span class="wordmark-seal" aria-hidden="true">来</span>
         <span>
           <strong>来菜</strong>
-          <small>AI 店长作战台</small>
+          <small>单店经营闭环 · 演示稿</small>
         </span>
       </a>
       <nav class="site-nav" aria-label="项目导航">
-        <a href="#logic">方案逻辑</a>
-        <a href="#pilot">试点验证</a>
-        <a href="#materials">项目资料</a>
+        <a href="#logic">方案</a>
+        <a href="#pilot">验证</a>
+        <a href="#materials">材料</a>
         <a class="nav-demo-link" href="demo/">
           <i data-lucide="play" aria-hidden="true"></i>
-          进入样机
+          打开样机
         </a>
       </nav>
     </header>
@@ -36,61 +36,66 @@
     <main id="main-content" tabindex="-1">
       <section id="top" class="hero" aria-labelledby="hero-title">
         <div class="container hero-intro" data-hero-intro>
-          <div class="hero-kicker">
-            <span>2026 AI 先锋未来人才大赛</span>
-            <span aria-hidden="true">/</span>
-            <span>来菜企业命题</span>
+          <div class="hero-copy">
+            <div class="hero-kicker">
+              <span>项目档案 · 2026</span>
+              <span aria-hidden="true">/</span>
+              <span>AI 先锋未来人才大赛 / 来菜命题</span>
+            </div>
+            <h1 id="hero-title">来菜 100 店的<br />单店单日经营闭环</h1>
+            <p class="hero-summary">
+              从备餐量确认开始，把营业中的待核对事项和闭店后的复盘放进同一条记录里。店长可以调整，岗位需要确认，事后能够查到依据。
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="demo/">
+                <i data-lucide="monitor-play" aria-hidden="true"></i>
+                打开样机
+              </a>
+              <a class="button button-quiet" href="#pilot">
+                <i data-lucide="list-checks" aria-hidden="true"></i>
+                查看验证方法
+              </a>
+            </div>
           </div>
-          <h1 id="hero-title">让 100 家店先拥有<br />一套能被执行的<br class="mobile-only" />日常判断</h1>
-          <p class="hero-summary">
-            我们不做泛餐饮 AI 平台。来菜 AI 店长作战台围绕一间门店、一天经营，把明日备餐、营业中品控线索与闭店复盘接成可修改、可追溯的工作闭环。
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="demo/">
-              <i data-lucide="monitor-play" aria-hidden="true"></i>
-              进入交互式样机
-            </a>
-            <a class="button button-quiet" href="#pilot">
-              <i data-lucide="list-checks" aria-hidden="true"></i>
-              查看试点如何验证
-            </a>
-          </div>
-          <dl class="hero-facts" aria-label="项目范围">
-            <div>
-              <dt>题目目标</dt>
-              <dd>100 家楚菜连锁</dd>
-            </div>
-            <div>
-              <dt>起点</dt>
-              <dd>单店单日闭环</dd>
-            </div>
-            <div>
-              <dt>人机边界</dt>
-              <dd>AI 建议，人来确认</dd>
-            </div>
-          </dl>
-          <ol class="decision-trace" aria-label="单店单日决策留痕轨迹">
-            <li data-trace-step>
-              <span class="trace-code">A</span>
-              <span><strong>经营信号</strong><small>销量、天气、活动与库存</small></span>
-            </li>
-            <li class="trace-connector" aria-hidden="true"><i></i></li>
-            <li data-trace-step>
-              <span class="trace-code">B</span>
-              <span><strong>店长确认</strong><small>调整数量，也写明理由</small></span>
-            </li>
-            <li class="trace-connector" aria-hidden="true"><i></i></li>
-            <li data-trace-step>
-              <span class="trace-code">C</span>
-              <span><strong>闭店证据</strong><small>结果、异常与下周动作</small></span>
-            </li>
-          </ol>
+          <aside class="hero-sidecar" aria-label="项目范围与门店工作顺序">
+            <p class="hero-side-label">试点工作底稿 / 01</p>
+            <dl class="hero-facts" aria-label="项目范围">
+              <div>
+                <dt>覆盖对象</dt>
+                <dd>100 家楚菜连锁</dd>
+              </div>
+              <div>
+                <dt>最小闭环</dt>
+                <dd>单店单日闭环</dd>
+              </div>
+              <div>
+                <dt>操作原则</dt>
+                <dd>建议可改，操作留痕</dd>
+              </div>
+            </dl>
+            <ol class="decision-trace" aria-label="单店单日决策留痕轨迹">
+              <li data-trace-step>
+                <span class="trace-code">18:00</span>
+                <span><strong>明日备餐</strong><small>销量、天气、活动与库存</small></span>
+              </li>
+              <li class="trace-connector" aria-hidden="true"><i></i></li>
+              <li data-trace-step>
+                <span class="trace-code">营业中</span>
+                <span><strong>品控核对</strong><small>异常线索进入待处理清单</small></span>
+              </li>
+              <li class="trace-connector" aria-hidden="true"><i></i></li>
+              <li data-trace-step>
+                <span class="trace-code">闭店后</span>
+                <span><strong>当日复盘</strong><small>结果、异常与下一周动作</small></span>
+              </li>
+            </ol>
+          </aside>
         </div>
 
         <figure class="hero-product-shot container" data-hero-shot>
           <div class="shot-caption">
-            <span>交互样机 / 01</span>
-            <strong>明日备餐决策台</strong>
+            <span>页面演示 / 备餐</span>
+            <strong>店长确认明日作业单</strong>
           </div>
           <img src="assets/images/01-prep.png" alt="来菜 AI 店长作战台的明日备餐决策台界面" />
           <figcaption>所有门店、菜品、销量、库存、异常和指标均为模拟样本，仅用于展示数据结构、工作流与验证方法。</figcaption>
@@ -101,7 +106,7 @@
         <div class="container section-heading" data-reveal>
           <p class="section-kicker">项目逻辑</p>
           <div class="heading-split">
-            <h2 id="logic-title">一间店的一天，<br />比一张“大屏”<br class="mobile-only" />更值得先做。</h2>
+            <h2 id="logic-title">百店之前，先把一间店<br />一天的工作跑顺。</h2>
             <p>
               百店不是把同一套推荐复制 100 次。门店会遇到团餐确认、活动变化、库存约束与交接缺口。系统要做的，是让这些临场信息能够被写进决策，并在事后被看见。
             </p>
@@ -163,9 +168,9 @@
 
       <section id="pilot" class="section section-pilot" aria-labelledby="pilot-title">
         <div class="container section-heading" data-reveal>
-          <p class="section-kicker">模拟试点</p>
+          <p class="section-kicker">试点方法</p>
           <div class="heading-split">
-            <h2 id="pilot-title">先把“是否有用”<br />拆成可回答的问题。</h2>
+            <h2 id="pilot-title">先把试点要回答的事<br />写清楚。</h2>
             <p>
               报名阶段没有企业内部数据，不能先许诺结果。我们先设计一套能比较、能复盘的验证条件：建议是否可用、异常是否闭环、总部是否能据此进行辅导。
             </p>
@@ -217,8 +222,8 @@
       <section class="section section-boundary" aria-labelledby="boundary-title">
         <div class="container boundary-layout" data-reveal>
           <div>
-            <p class="section-kicker">边界与治理</p>
-            <h2 id="boundary-title">系统可以提醒，<br />但不能替人越界。</h2>
+            <p class="section-kicker">使用边界</p>
+            <h2 id="boundary-title">把系统能做和不能做的事<br />写进规则。</h2>
           </div>
           <div class="boundary-list">
             <article>
@@ -249,8 +254,8 @@
       <section id="materials" class="section section-materials" aria-labelledby="materials-title">
         <div class="container materials-heading" data-reveal>
           <div>
-            <p class="section-kicker">项目资料</p>
-            <h2 id="materials-title">每一份材料，<br />证明一个不同的问题。</h2>
+            <p class="section-kicker">材料与记录</p>
+            <h2 id="materials-title">材料对应问题，<br />不只是放在一起。</h2>
           </div>
           <p>网页、文档和数据工作簿相互对应。评委可先操作样机，再按需查看研究、试点与数据口径。</p>
         </div>
@@ -292,12 +297,12 @@
       <section class="cta-band" aria-labelledby="cta-title">
         <div class="container cta-layout" data-reveal>
           <div>
-            <p class="section-kicker">可交互演示</p>
-            <h2 id="cta-title">看完逻辑，直接进入门店的一天。</h2>
+            <p class="section-kicker">样机演示</p>
+            <h2 id="cta-title">从明日备餐开始，按一间店的一天走一遍。</h2>
           </div>
           <a class="button button-light" href="demo/">
             <i data-lucide="mouse-pointer-click" aria-hidden="true"></i>
-            打开三屏交互样机
+              打开样机
           </a>
         </div>
       </section>
