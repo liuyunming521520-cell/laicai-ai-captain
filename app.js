@@ -47,9 +47,25 @@ const stageSummary = document.getElementById("stage-summary");
 const stagePoints = document.getElementById("stage-points");
 const stageImage = document.getElementById("stage-image");
 const stageCaption = document.getElementById("stage-caption");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let stageTween;
 
 function renderIcons() {
   if (window.lucide) window.lucide.createIcons({ attrs: { "stroke-width": 1.8 } });
+}
+
+function animateStageChange() {
+  if (!window.gsap || reduceMotion.matches) return;
+
+  const targets = [stageLabel, stageTitle, stageSummary, stagePoints, stageImage, stageCaption];
+  stageTween?.kill();
+  stageTween = window.gsap.from(targets, {
+    y: 14,
+    duration: 0.48,
+    ease: "power2.out",
+    stagger: 0.045,
+    overwrite: "auto"
+  });
 }
 
 function setStage(name) {
@@ -69,10 +85,54 @@ function setStage(name) {
   stageImage.src = stage.image;
   stageImage.alt = stage.alt;
   stageCaption.textContent = stage.caption;
+  animateStageChange();
 }
 
 stageButtons.forEach((button) => {
   button.addEventListener("click", () => setStage(button.dataset.stage));
 });
 
+function initializeMotion() {
+  if (!window.gsap || reduceMotion.matches) return;
+
+  const { gsap, ScrollTrigger } = window;
+  if (ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+
+  const heroIntro = document.querySelector("[data-hero-intro]");
+  const heroShot = document.querySelector("[data-hero-shot]");
+  const heroTargets = heroIntro
+    ? [...heroIntro.querySelectorAll(".hero-kicker, h1, .hero-summary, .hero-actions, .hero-facts, .decision-trace")]
+    : [];
+  const traceSteps = [...document.querySelectorAll("[data-trace-step]")];
+  const traceConnectors = [...document.querySelectorAll(".trace-connector i")];
+
+  const heroTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
+  heroTimeline
+    .from(heroTargets, { y: 18, duration: 0.6, stagger: 0.08 })
+    .from(traceSteps, { y: 9, duration: 0.36, stagger: 0.1 }, "-=0.22")
+    .from(traceConnectors, { scaleX: 0, scaleY: 0, duration: 0.38, stagger: 0.07 }, "-=0.14")
+    .from(heroShot, { y: 22, scale: 0.986, duration: 0.78 }, "-=0.18");
+
+  if (ScrollTrigger) {
+    gsap.utils.toArray("[data-reveal]").forEach((element) => {
+      gsap.from(element, {
+        y: 28,
+        duration: 0.68,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: element,
+          start: "top 84%",
+          once: true
+        }
+      });
+    });
+  }
+
+  const header = document.querySelector("[data-site-header]");
+  const updateHeader = () => header?.classList.toggle("is-scrolled", window.scrollY > 8);
+  updateHeader();
+  window.addEventListener("scroll", updateHeader, { passive: true });
+}
+
 document.addEventListener("DOMContentLoaded", renderIcons);
+window.addEventListener("load", initializeMotion, { once: true });

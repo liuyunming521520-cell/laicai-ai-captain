@@ -128,6 +128,33 @@ const state = {
 };
 
 const byId = (id) => document.getElementById(id);
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+let viewTween;
+
+function animatePulse(target) {
+  if (!window.gsap || reduceMotion.matches || !target) return;
+  window.gsap.fromTo(target, { scale: 0.986 }, {
+    scale: 1,
+    duration: 0.36,
+    ease: "power2.out",
+    overwrite: "auto"
+  });
+}
+
+function animateDemoView(viewName) {
+  if (!window.gsap || reduceMotion.matches) return;
+  const view = byId(`view-${viewName}`);
+  if (!view) return;
+  const targets = [...view.children];
+  viewTween?.kill();
+  viewTween = window.gsap.from(targets, {
+    y: 14,
+    duration: 0.46,
+    ease: "power2.out",
+    stagger: 0.07,
+    overwrite: "auto"
+  });
+}
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -227,6 +254,7 @@ function commitPrep() {
   const reasonText = changed.length ? `调整依据：${reason}${note ? `。补充：${escapeHtml(note)}` : "。"}` : "未发生人工调整。";
   state.prepCommitted = `已写入明日作业单：${changedText}。${reasonText}`;
   renderPrep();
+  animatePulse(byId("prep-audit"));
   showToast("明日作业单已写入，调整依据已留痕。");
 }
 
@@ -305,6 +333,7 @@ function advanceIssue(id) {
   }
   state.selectedIssueId = id;
   renderIssues();
+  animatePulse(document.querySelector(`[data-issue-card="${id}"]`));
 }
 
 function renderVarianceChart() {
@@ -335,6 +364,7 @@ function generateReview() {
     : "当日异常均已完成闭环，可将记录纳入周度辅导判断。";
   byId("review-summary").innerHTML = `<i data-lucide="sparkles" aria-hidden="true"></i><p>${prepSentence}${issueSentence}</p>`;
   iconify();
+  animatePulse(byId("review-summary"));
   showToast("复盘初稿已生成，仍需店长确认后才能进入周评。");
 }
 
@@ -359,6 +389,7 @@ function switchView(viewName) {
     if (active) button.setAttribute("aria-current", "page");
     else button.removeAttribute("aria-current");
   });
+  animateDemoView(viewName);
 }
 
 function resetPrep() {
@@ -439,6 +470,21 @@ function init() {
   renderVarianceChart();
   bindEvents();
   iconify();
+  initializeDemoMotion();
+}
+
+function initializeDemoMotion() {
+  if (!window.gsap || reduceMotion.matches) return;
+  const topbar = document.querySelector(".topbar");
+  const sidebar = document.querySelector(".sidebar");
+  const visibleView = document.querySelector(".view.is-visible");
+  const viewTargets = visibleView ? [...visibleView.children] : [];
+  const timeline = window.gsap.timeline({ defaults: { ease: "power3.out" } });
+
+  timeline
+    .from(topbar, { y: -12, duration: 0.46 })
+    .from(sidebar, { x: -14, duration: 0.48 }, "-=0.24")
+    .from(viewTargets, { y: 16, duration: 0.52, stagger: 0.07 }, "-=0.2");
 }
 
 document.addEventListener("DOMContentLoaded", init);

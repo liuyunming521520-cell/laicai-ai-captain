@@ -14,7 +14,7 @@
   <body>
     <a class="skip-link" href="#main-content">跳到主要内容</a>
 
-    <header class="site-header">
+    <header class="site-header" data-site-header>
       <a class="wordmark" href="#top" aria-label="回到项目首页">
         <span class="wordmark-seal" aria-hidden="true">来</span>
         <span>
@@ -35,7 +35,7 @@
 
     <main id="main-content" tabindex="-1">
       <section id="top" class="hero" aria-labelledby="hero-title">
-        <div class="container hero-intro">
+        <div class="container hero-intro" data-hero-intro>
           <div class="hero-kicker">
             <span>2026 AI 先锋未来人才大赛</span>
             <span aria-hidden="true">/</span>
@@ -69,9 +69,25 @@
               <dd>AI 建议，人来确认</dd>
             </div>
           </dl>
+          <ol class="decision-trace" aria-label="单店单日决策留痕轨迹">
+            <li data-trace-step>
+              <span class="trace-code">A</span>
+              <span><strong>经营信号</strong><small>销量、天气、活动与库存</small></span>
+            </li>
+            <li class="trace-connector" aria-hidden="true"><i></i></li>
+            <li data-trace-step>
+              <span class="trace-code">B</span>
+              <span><strong>店长确认</strong><small>调整数量，也写明理由</small></span>
+            </li>
+            <li class="trace-connector" aria-hidden="true"><i></i></li>
+            <li data-trace-step>
+              <span class="trace-code">C</span>
+              <span><strong>闭店证据</strong><small>结果、异常与下周动作</small></span>
+            </li>
+          </ol>
         </div>
 
-        <figure class="hero-product-shot container">
+        <figure class="hero-product-shot container" data-hero-shot>
           <div class="shot-caption">
             <span>交互样机 / 01</span>
             <strong>明日备餐决策台</strong>
@@ -82,7 +98,7 @@
       </section>
 
       <section id="logic" class="section section-logic" aria-labelledby="logic-title">
-        <div class="container section-heading">
+        <div class="container section-heading" data-reveal>
           <p class="section-kicker">项目逻辑</p>
           <div class="heading-split">
             <h2 id="logic-title">一间店的一天，<br />比一张“大屏”<br class="mobile-only" />更值得先做。</h2>
@@ -92,7 +108,7 @@
           </div>
         </div>
 
-        <div class="container workflow-shell">
+        <div class="container workflow-shell" data-reveal>
           <div class="stage-tabs" role="tablist" aria-label="三段门店工作流">
             <button class="stage-tab is-active" type="button" data-stage="prep" role="tab" aria-selected="true">
               <span class="stage-index">01</span>
@@ -146,7 +162,7 @@
       </section>
 
       <section id="pilot" class="section section-pilot" aria-labelledby="pilot-title">
-        <div class="container section-heading">
+        <div class="container section-heading" data-reveal>
           <p class="section-kicker">模拟试点</p>
           <div class="heading-split">
             <h2 id="pilot-title">先把“是否有用”<br />拆成可回答的问题。</h2>
@@ -156,7 +172,7 @@
           </div>
         </div>
 
-        <div class="container pilot-grid">
+        <div class="container pilot-grid" data-reveal>
           <article class="pilot-question">
             <span class="question-number">Q1</span>
             <h3>建议会被采用吗？</h3>
@@ -174,7 +190,7 @@
           </article>
         </div>
 
-        <div class="container pilot-evidence">
+        <div class="container pilot-evidence" data-reveal>
           <div class="pilot-scope">
             <p class="section-kicker">模拟试点范围</p>
             <div class="scope-line" aria-label="模拟试点范围为三家门店、四个重点菜品、二十八日试点周期">
@@ -199,7 +215,7 @@
       </section>
 
       <section class="section section-boundary" aria-labelledby="boundary-title">
-        <div class="container boundary-layout">
+        <div class="container boundary-layout" data-reveal>
           <div>
             <p class="section-kicker">边界与治理</p>
             <h2 id="boundary-title">系统可以提醒，<br />但不能替人越界。</h2>
@@ -231,7 +247,7 @@
       </section>
 
       <section id="materials" class="section section-materials" aria-labelledby="materials-title">
-        <div class="container materials-heading">
+        <div class="container materials-heading" data-reveal>
           <div>
             <p class="section-kicker">项目资料</p>
             <h2 id="materials-title">每一份材料，<br />证明一个不同的问题。</h2>
@@ -239,7 +255,7 @@
           <p>网页、文档和数据工作簿相互对应。评委可先操作样机，再按需查看研究、试点与数据口径。</p>
         </div>
 
-        <div class="container materials-list">
+        <div class="container materials-list" data-reveal>
           <a class="material-item" href="assets/docs/方案总览-6页.pdf" target="_blank" rel="noopener">
             <span class="material-index">01</span>
             <span class="material-copy"><strong>方案总览</strong><small>问题拆解、三段闭环与试点路径</small></span>
@@ -274,7 +290,7 @@
       </section>
 
       <section class="cta-band" aria-labelledby="cta-title">
-        <div class="container cta-layout">
+        <div class="container cta-layout" data-reveal>
           <div>
             <p class="section-kicker">可交互演示</p>
             <h2 id="cta-title">看完逻辑，直接进入门店的一天。</h2>
@@ -294,6 +310,8 @@
       </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
     <script src="app.js"></script>
   </body>
